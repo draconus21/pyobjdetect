@@ -1,0 +1,24 @@
+[tool.autopep8]
+max_line_length = 120
+ignore = 'E501'
+
+[tool.black]
+line-length = 120
+ignore = 'E501'
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.env
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
