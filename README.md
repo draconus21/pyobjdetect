@@ -1,5 +1,7 @@
 # pyObjDetect
 
+* [ Reference ](https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html)
+* [ Dataset ](https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip)
 
 ## Prerequisites
 * [Cuda Toolkit 11.7](https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network)
