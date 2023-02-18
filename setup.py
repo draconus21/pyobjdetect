@@ -42,10 +42,10 @@ setup(
     # pip install packages dependencies
     install_requires=[
         "wheel",
+        "torch",
+        "torchvision",
+        "torchaudio",
     ],
     extras_require={"dev": ["black"]},
-    entry_points={
-        "console_scripts": [
-        ]
-    },
+    entry_points={"console_scripts": []},
 )

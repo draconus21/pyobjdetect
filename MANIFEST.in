@@ -1,0 +1,2 @@
+include _version.txt
+recursive-include pyobjdetect *.so *.dll *.pyd
