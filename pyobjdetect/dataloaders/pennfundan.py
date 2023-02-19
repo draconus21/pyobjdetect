@@ -75,6 +75,9 @@ class PennFudanDatatset(torch.utils.data.Dataset):
 
 
 def test():
+    from pyobjdetect.utils import logutils
+
+    logutils.setupLogging("DEBUG")
     root = os.path.join(os.environ["NXK_DATA_DIR"], "PennFudanPed")
     dataset = PennFudanDatatset(root, transforms=None)
 
