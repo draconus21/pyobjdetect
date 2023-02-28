@@ -75,7 +75,7 @@ class PennFudanDatatset(torch.utils.data.Dataset):
 
 
 def test():
-    from pyobjdetect.utils import logutils
+    from pyobjdetect.utils import logutils, viz
 
     logutils.setupLogging("DEBUG")
     root = os.path.join(os.environ["NXK_DATA_DIR"], "PennFudanPed")
@@ -83,7 +83,13 @@ def test():
 
     assert len(dataset) > 0, f"Length of dataset must be larger than 0"
     logging.info(f"loaded dataset with {len(dataset)} examples")
-    img, target = dataset.__getitem__(10)
+    idx = np.random.randint(0, len(dataset))
+    img, target = dataset.__getitem__(idx)
+
+    matToShow = [target["masks"][i].numpy() for i in range(target["masks"].shape[0])]
+    matToShow.append(np.array(img))
+    viz.quickmatshow(matToShow, title=f"example {idx}")
+    viz.show()
 
 
 if __name__ == "__main__":

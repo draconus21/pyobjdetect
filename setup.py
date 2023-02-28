@@ -40,7 +40,7 @@ setup(
     url="",
     # python = 3.10
     # pip install packages dependencies
-    install_requires=["wheel", "torch", "torchvision", "torchaudio", "matplotlib"],
+    install_requires=["wheel", "torch", "torchvision", "torchaudio", "matplotlib", "opencv-python-headless", "pyside2"],
     extras_require={"dev": ["black"]},
     entry_points={"console_scripts": []},
 )
