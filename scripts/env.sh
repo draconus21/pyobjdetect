@@ -142,12 +142,18 @@ fi
 
 chmod u+x -R "${NXK_REPO_DIR}/scripts"
 
+NXK_DATA_DIR="$NXK_REPO_DIR/data"
 NXK_EXPERIMENTS_DIR="$NXK_REPO_DIR/experiments"
 NXK_LOG_DIR="$NXK_REPO_DIR/logs"
 NXK_LOG_CFG="$NXK_REPO_DIR/default-logging.json"
 
+make_dir $NSK_DATA_DIR
+make_dir $NXK_EXPERIMENTS_DIR
+make_dir $NXK_LOG_DIR
+
 cyan "\n[Generated Base Env.Vars]"
 arrayEnvVarsToExport=(  NXK_REPO_DIR
+                        NXK_DATA_DIR
                         NXK_EXPERIMENTS_DIR
                         NXK_LOG_DIR
                         NXK_LOG_CFG)
@@ -210,13 +216,6 @@ echo "${cyan}Active Python Exec in use : ${normal} ${NXK_PYTHON_EXECUTABLE} vers
 echo "env    : ${NXK_PYTHON_VENV_PATH}"
 echo "python : ${NXK_PYTHON_EXECUTABLE}"
 echo "version: ${NXK_PYTHON_VERSION}"
-
-
-# ------------------------------------------------------------------- #
-#                                   OTHER                             #
-# ------------------------------------------------------------------- #
-make_dir $NXK_LOG_DIR
-make_dir $NXK_EXPERIMENTS_DIR
 
 
 green "\n--- Final Env.Vars ---"
