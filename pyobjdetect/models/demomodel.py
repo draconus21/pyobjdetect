@@ -11,7 +11,6 @@ def finetune_example(num_classes=2):
     # get number of input features for the classifier
     in_features = model.roi_heads.box_predictor.cls_score.in_features
 
-    # replace the classifier with a new one, that has  num_classes which is user defined
     model.roi_heads.box_predictor = FastRCNNPredictor(in_channels=in_features, num_classes=num_classes)
 
     return model
