@@ -113,7 +113,9 @@ def matshow(ax, mat, title=None, cbar=True, **kwargs):
     # set nans to black for seismic cmap
     if cmap == "seismic":
         nancolor = kwargs.pop("nan_color", "black")
-        cm.get_cmap(cmap).set_bad(color=nancolor)
+        cmap_obj = cm.get_cmap(cmap).copy()
+        cmap_obj.set_bad(color=nancolor)
+        kwargs["cmap"] = cmap_obj
 
     # auto colormap ranges for cmaps
     if vmin is None or vmax is None:
