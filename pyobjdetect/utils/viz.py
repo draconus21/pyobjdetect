@@ -230,13 +230,15 @@ def quickmatshow(mats: list, **kwargs):
     """
     matshow all mats in list
     """
-    cmap = kwargs.get("cmap", "gray")
+    # remove cmap to avoid conflict with subplots
+    cmap = kwargs.pop("cmap", "gray")
 
     n = len(mats)
     fig, axList, nr, nc = subplots_n(n, **kwargs)
     # to avoid conflict with axis title
     kwargs.pop("title", None)
 
+    # add cmap back for matshow
     kwargs["cmap"] = cmap
     for i, mat in enumerate(mats):
         ax = axList[i // nc, i % nc]
