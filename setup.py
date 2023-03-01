@@ -1,46 +1,53 @@
-# Always prefer setuptools over distutils
-from setuptools import setup, find_packages, Extension, Distribution
-from os import path, environ
-from shutil import copyfile
-from glob import glob
+#!/usr/bin/env python
 
-app_name = "pyobjdetect"
-app_version = "0.0.0"
-license_filename = "LICENSE.txt"
-readme_md_file = "readme.md"
-version_file = "_version.txt"
-description_package = "Object detection using Deep Learning"
+"""The setup script."""
 
-try:
-    with open(version_file) as f:
-        app_version = f.read()
-except:
-    pass
+from setuptools import setup, find_packages
 
+with open("README.rst") as readme_file:
+    readme = readme_file.read()
 
-class BinaryDistribution(Distribution):
-    """Distribution which always forces a binary package with platform name"""
+with open("HISTORY.rst") as history_file:
+    history = history_file.read()
 
-    def has_ext_modules(foo):
-        return True
+requirements = [
+    "Click>=7.0",
+]
 
+test_requirements = [
+    "pytest>=3",
+]
 
 setup(
-    name=app_name,
-    version=app_version,
     author="Neeth Kunnath",
     author_email="neeth.xavier@gmail.com",
-    license=license_filename,
-    description=description_package,
-    packages=find_packages(),
-    distclass=BinaryDistribution,
-    package_data={"": ["*.pyd"]},
-    # only for source dist + Manifest.in
+    python_requires=">=3.6",
+    classifiers=[
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+    ],
+    description="Object detection based on pytorch tutorial",
+    entry_points={
+        "console_scripts": [
+            "pyobjdetect=pyobjdetect.cli:main",
+        ],
+    },
+    install_requires=requirements,
+    license="MIT license",
+    long_description=readme + "\n\n" + history,
     include_package_data=True,
-    url="",
-    # python = 3.10
-    # pip install packages dependencies
-    install_requires=["wheel", "torch", "torchvision", "torchaudio", "matplotlib", "opencv-python-headless", "pyside2"],
-    extras_require={"dev": ["black"]},
-    entry_points={"console_scripts": []},
+    keywords="pyobjdetect",
+    name="pyobjdetect",
+    packages=find_packages(include=["pyobjdetect", "pyobjdetect.*"]),
+    test_suite="tests",
+    tests_require=test_requirements,
+    url="https://gitlab.com/draconus21/pyobjdetect",
+    version="0.1.0",
+    zip_safe=False,
 )
