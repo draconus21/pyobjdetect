@@ -3,7 +3,6 @@
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
-
 [project]
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",
@@ -43,12 +42,16 @@ dev = [
   "black",
 ]
 test = ["tox", "coverage", "Sphinx", "twine", "click", "pytest", "black"]
+
 [project.scripts]
 pyobjdetect = "pyobjdetect.cli:main"
 
 [project.urls]
 repository = "https://gitlab.com/draconus21/pyobjdetect"
 changelog = "https://gitlab.com/draconus21/pyobjdetect/blob/master/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+exclude = ["data", "docs", "experiments", "pyscripts", "logs", "tests"]
 
 [tool.setuptools.dynamic]
 version = { attr = "pyobjdetect.__version__" }
