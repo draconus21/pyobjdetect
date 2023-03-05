@@ -1,12 +1,48 @@
-[tool.autopep8]
-max_line_length = 120
-ignore = 'E501'
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+classifiers=[
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+    ]
+name = "pyobjdetect"
+authors = [{ name = "Neeth Kunnath", email = "neeth.xavier@gmail.com" }]
+description = "Object detection based on pytorch tutorial"
+license={ text="MIT license" }
+keywords = ["pyobjdetect"]
+dependencies = ["click"]
+requires-python = ">=3.7"
+dynamic = ["version", "readme"]
+
+[project.optional-dependencies]
+dev = ["black", "build", "tox", "coverage", "Sphinx", "twine", "click", "pytest", "black"]
+test = ["tox", "coverage", "Sphinx", "twine", "click", "pytest", "black"]
+[project.scripts]
+pyobjdetect = "pyobjdetect.cli:main"
+
+[project.urls]
+repository = "https://gitlab.com/draconus21/pyobjdetect"
+changelog =  "https://gitlab.com/draconus21/pyobjdetect/blob/master/CHANGELOG.md"
+
+[tool.setuptools.dynamic]
+version = { attr = "pyobjdetect.__version__" }
+readme = { file = ["README.rst", "CONTRIIBUTING.rst", "HISTORY.rst"] }
+
+[tool.pytest]
+collect_ignore = ["setup.py"]
 
 [tool.black]
 line-length = 120
-ignore = 'E501'
-include = '\.pyi?$'
-exclude = '''
+ignore = "E501"
+extend-exclude = '''
 (
   /(
       \.eggs         # exclude a few common directories in the

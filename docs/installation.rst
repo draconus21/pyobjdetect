@@ -8,13 +8,13 @@ Installation
 Stable release
 --------------
 
-To install pyobjdetect, run this command in your terminal:
+To install PyObjDetect, run this command in your terminal:
 
 .. code-block:: console
 
     $ pip install pyobjdetect
 
-This is the preferred method to install pyobjdetect, as it will always install the most recent stable release.
+This is the preferred method to install PyObjDetect, as it will always install the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -26,7 +26,7 @@ you through the process.
 From sources
 ------------
 
-The sources for pyobjdetect can be downloaded from the `GitLab repo`_.
+The sources for PyObjDetect can be downloaded from the `Gitlab repo`_.
 
 You can either clone the public repository:
 
@@ -34,12 +34,11 @@ You can either clone the public repository:
 
     $ git clone git://gitlab.com/draconus21/pyobjdetect
 
-..
-    Or download the `tarball`_:
+Or download the `tarball`_:
 
-    .. code-block:: console
+.. code-block:: console
 
-        $ curl -OJL https://gitlab.com/draconus21/pyobjdetect/tarball/master
+    $ curl -OJL https://gitlab.com/draconus21/pyobjdetect/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -48,6 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _GitLab repo: https://gitlab.com/draconus21/pyobjdetect
-..
-    .. _tarball: https://gitlab.com/draconus21/pyobjdetect/tarball/master
+.. _Gitlab repo: https://gitlab.com/draconus21/pyobjdetect
+.. _tarball: https://gitlab.com/draconus21/pyobjdetect/tarball/master

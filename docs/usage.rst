@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use pyobjdetect in a project::
+To use PyObjDetect in a project::
 
     import pyobjdetect

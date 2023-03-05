@@ -1,4 +1,4 @@
-Welcome to pyobjdetect's documentation!
+Welcome to PyObjDetect's documentation!
 ======================================
 
 .. toctree::

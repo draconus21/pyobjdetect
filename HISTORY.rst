@@ -2,7 +2,7 @@
 History
 =======
 
-0.1.0 (2023-02-28)
+0.0.0 (2023-03-04)
 ------------------
 
-* First release on PyPI.
+* First cookiecutter template

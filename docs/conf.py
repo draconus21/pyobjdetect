@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'pyobjdetect'
+project = 'PyObjDetect'
 copyright = "2023, Neeth Kunnath"
 author = "Neeth Kunnath"
 
@@ -128,7 +128,7 @@ latex_elements = {
 # [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'pyobjdetect.tex',
-     'pyobjdetect Documentation',
+     'PyObjDetect Documentation',
      'Neeth Kunnath', 'manual'),
 ]
 
@@ -139,7 +139,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     (master_doc, 'pyobjdetect',
-     'pyobjdetect Documentation',
+     'PyObjDetect Documentation',
      [author], 1)
 ]
 
@@ -151,7 +151,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'pyobjdetect',
-     'pyobjdetect Documentation',
+     'PyObjDetect Documentation',
      author,
      'pyobjdetect',
      'One line description of project.',

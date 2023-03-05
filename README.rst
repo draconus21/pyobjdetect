@@ -1,5 +1,5 @@
 ===========
-pyobjdetect
+PyObjDetect
 ===========
 
 

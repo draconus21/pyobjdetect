@@ -26,20 +26,20 @@ If you are reporting a bug, please include:
 Fix Bugs
 ~~~~~~~~
 
-Look through the GitLab issues for bugs. Anything tagged with "bug" and "help
+Look through the Gitlab issues for bugs. Anything tagged with "bug" and "help
 wanted" is open to whoever wants to implement it.
 
 Implement Features
 ~~~~~~~~~~~~~~~~~~
 
-Look through the GitLab issues for features. Anything tagged with "enhancement"
+Look through the Gitlab issues for features. Anything tagged with "enhancement"
 and "help wanted" is open to whoever wants to implement it.
 
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-pyobjdetect could always use more documentation, whether as part of the
-official pyobjdetect docs, in docstrings, or even on the web in blog posts,
+PyObjDetect could always use more documentation, whether as part of the
+official PyObjDetect docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback
@@ -59,30 +59,33 @@ Get Started!
 
 Ready to contribute? Here's how to set up `pyobjdetect` for local development.
 
-1. Fork the `pyobjdetect` repo on GitLab.
-2. Clone your fork locally::
+#. Start from an issue (create one if it does not exist) at https://gitlab.com/draconus21/pyobjdetect/issues.
+#. Then go into the issue and create a merge request from it. This will automates a few things.
+    * creates a new branch with the issue number and title
+    * adds the issue link to the MR description
+    * automatallically closes the issue with the MR is merged.
 
-    $ git clone git@gitlab.com:your_name_here/pyobjdetect.git
+#. Clone the repo locally::
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+    $ git clone https://gitlab.com/draconus21/pyobjdetect.git
 
-    # to use the default virtual environment (.env)
-    $ source ./scripts/env.sh
+#. Make sure that you have `pull.rebase` set to true. If not, run this::
 
-    # instead, if you want to use your custom virtual environment
-    $ source ./scripts/env.sh <path_to_custom venv>
+    $ git config pull.rebase true
 
-4. Install the package in editable mode::
+#. Create a branch for local development::
 
-    $ ./scripts/build.sh
+    $ git checkout -b name-of-your-branch-from-step-2
 
-5. Create a branch for local development::
+#. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
-    $ git checkout -b name-of-your-bugfix-or-feature
+    $ mkvirtualenv pyobjdetect
+    $ cd pyobjdetect/
+    $ pip install -e ".[dev]"
 
    Now you can make your changes locally.
 
-7. When you're done making changes, check that your changes pass flake8 and the
+#. When you're done making changes, check that your changes pass flake8 and the
    tests, including testing other Python versions with tox::
 
     $ flake8 pyobjdetect tests
@@ -91,18 +94,18 @@ Ready to contribute? Here's how to set up `pyobjdetect` for local development.
 
    To get flake8 and tox, just pip install them into your virtualenv.
 
-8. Commit your changes and push your branch to GitLab::
+#. Commit your changes and push your branch to Gitlab::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-9. Submit a merge request through the GitLab website.
+#. Submit a merge request through the Gitlab website.
 
 Merge Request Guidelines
-------------------------
+-----------------------
 
-Before you submit a merge request, check that it meets these guidelines:
+Before you mark a merge request as ready, check that it meets these guidelines:
 
 1. The merge request should include tests.
 2. If the merge request adds functionality, the docs should be updated. Put
@@ -122,6 +125,8 @@ $ pytest tests.test_pyobjdetect
 Deploying
 ---------
 
+TODO:: Fix bump2version
+
 A reminder for the maintainers on how to deploy.
 Make sure all your changes are committed (including an entry in HISTORY.rst).
 Then run::
@@ -129,5 +134,3 @@ Then run::
 $ bump2version patch # possible: major / minor / patch
 $ git push
 $ git push --tags
-
-Travis will then deploy to PyPI if tests pass.

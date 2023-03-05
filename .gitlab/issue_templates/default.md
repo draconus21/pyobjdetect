@@ -1,4 +1,4 @@
-* pyobjdetect version:
+* PyObjDetect version:
 * Python version:
 * Operating System:
 
