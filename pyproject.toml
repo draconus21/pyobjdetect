@@ -5,32 +5,50 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-classifiers=[
-        "Development Status :: 2 - Pre-Alpha",
-        "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
-        "Natural Language :: English",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-    ]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+]
 name = "pyobjdetect"
 authors = [{ name = "Neeth Kunnath", email = "neeth.xavier@gmail.com" }]
 description = "Object detection based on pytorch tutorial"
-license={ text="MIT license" }
+license = { text = "MIT license" }
 keywords = ["pyobjdetect"]
-dependencies = ["click"]
+dependencies = [
+  "click",
+  "torch",
+  "torchvision",
+  "torchaudio",
+  "matplotlib",
+  "opencv-python-headless",
+  "pyside2",
+]
 requires-python = ">=3.7"
 dynamic = ["version", "readme"]
 
 [project.optional-dependencies]
-dev = ["black", "build", "tox", "coverage", "Sphinx", "twine", "click", "pytest", "black"]
+dev = [
+  "black",
+  "build",
+  "tox",
+  "coverage",
+  "Sphinx",
+  "twine",
+  "click",
+  "pytest",
+  "black",
+]
 test = ["tox", "coverage", "Sphinx", "twine", "click", "pytest", "black"]
 [project.scripts]
 pyobjdetect = "pyobjdetect.cli:main"
 
 [project.urls]
 repository = "https://gitlab.com/draconus21/pyobjdetect"
-changelog =  "https://gitlab.com/draconus21/pyobjdetect/blob/master/CHANGELOG.md"
+changelog = "https://gitlab.com/draconus21/pyobjdetect/blob/master/CHANGELOG.md"
 
 [tool.setuptools.dynamic]
 version = { attr = "pyobjdetect.__version__" }
