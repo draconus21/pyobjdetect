@@ -29,13 +29,13 @@ Features
 
 Prerequisites
 -------------
-* Reference_
+* `Pytorch Object Detection Tutorial`_
 * Dataset_
 * `Cuda Toolkit 11.7`_
 
-.. _Reference : https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
-.. _Dataset : https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip
-.. _`Cuda Toolkit 11.7` : https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network
+.. _Pytorch Object Detection Tutorial: https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
+.. _Dataset: https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip
+.. _`Cuda Toolkit 11.7`: https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network
 
 Environment setup
 -----------------
