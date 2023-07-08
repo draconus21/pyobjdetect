@@ -55,7 +55,7 @@ def secho(message, fg="cyan", verboseLvl=0):
             click.secho(json.dumps(message, indent=" " * 4), fg=fg)
 
 
-def setupLogging(level: str = "INFO", env_key: str = "NXK_LOG_CFG"):
+def setupLogging(level: str = "INFO", env_key: str = "ODT_LOG_CFG"):
     """
     Setup logging
     """

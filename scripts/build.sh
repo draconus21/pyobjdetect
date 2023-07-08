@@ -17,14 +17,14 @@ function red () {
     echo ${red}$1${normal}
 }
 
-green "==== build.sh ===="
+green "═══ start pyobjdetect build.sh ═══"
 
 function install() {
     green "install pyobjdetect"
 
     # install package locally
     pip install --upgrade pip
-    pip install -e $NXK_REPO_DIR[dev]
+    pip install -e $ODT_DIR[dev]
 }
 
 case "${1}" in
@@ -40,4 +40,4 @@ case "${1}" in
         ;;
 esac
 
-green "==== build.sh ===="
+green "═══ end pyobjdetect build.sh ═══"

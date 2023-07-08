@@ -1,12 +1,56 @@
-[tool.autopep8]
-max_line_length = 120
-ignore = 'E501'
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+version = "0.1.0"
+name = "pyobjdetect"
+authors = [{ name = "Neeth Kunnath", email = "neeth.xavier@gmail.com" }]
+description = "Playing with pytorch object detection tutorial"
+license = { text = "GNU General Public License v3" }
+keywords = ["pyobjdetect"]
+dependencies = [
+  "click",
+  "torch",
+  "torchvision",
+  "torchaudio",
+  "matplotlib",
+  "opencv-python-headless",
+  "pyside2",
+]
+requires-python = ">=3.7"
+dynamic = ["readme"]
+classifiers=[
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+    ]
+
+[project.optional-dependencies]
+dev = ["black", "build", "tox", "coverage", "Sphinx", "twine", "click", "black"]
+test = ["tox", "coverage", "Sphinx", "twine", "click", "black"]
+
+[project.scripts]
+pyobjdetect = "pyobjdetect.cli:main"
+
+[project.urls]
+repository = "https://gitlab.com/draconus21/pyobjdetect"
+changelog = "https://gitlab.com/draconus21/pyobjdetect/blob/master/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+exclude = ["data", "docs", "experiments", "pyscripts", "logs", "tests"]
+
+[tool.setuptools.dynamic]
+readme = { file = ["README.rst", "CONTRIBUTING.rst", "HISTORY.rst"] }
 
 [tool.black]
 line-length = 120
-ignore = 'E501'
-include = '\.pyi?$'
-exclude = '''
+ignore = "E501"
+extend-exclude = '''
 (
   /(
       \.eggs         # exclude a few common directories in the

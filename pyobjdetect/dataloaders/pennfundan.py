@@ -78,7 +78,7 @@ def test():
     from pyobjdetect.utils import logutils, viz
 
     logutils.setupLogging("DEBUG")
-    root = os.path.join(os.environ["NXK_DATA_DIR"], "PennFudanPed")
+    root = os.path.join(os.environ["ODT_DATA_DIR"], "PennFudanPed")
     dataset = PennFudanDatatset(root, transforms=None)
 
     assert len(dataset) > 0, f"Length of dataset must be larger than 0"
