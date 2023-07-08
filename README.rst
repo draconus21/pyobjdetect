@@ -3,7 +3,7 @@ PyObjDetect
 ===========
 
 
-.. 
+..
    .. image:: https://img.shields.io/pypi/v/pyobjdetect.svg
            :target: https://pypi.python.org/pypi/pyobjdetect
 
@@ -37,7 +37,7 @@ Environment setup
 -----------------
 First, run the `source scripts/env.sh` to get setup. It will ask to setup a python virtual environment if one does not already exist
 
-.. code-block:: bash 
+.. code-block:: bash
 
     # to use the default virtual environment (.env)
     source ./scripts/env.sh
@@ -47,7 +47,7 @@ First, run the `source scripts/env.sh` to get setup. It will ask to setup a pyth
 
 Then, install the package in editable mode
 
-.. code-block:: bash 
+.. code-block:: bash
 
     ./scripts/build.sh install
 
@@ -57,7 +57,7 @@ Developping
 -----------
 When you return to the project, run the `source` command to set up the environment and reactivate your virtual environment
 
-.. code-block:: bash 
+.. code-block:: bash
 
     # to use the default virtual environment (.env)
     source ./scripts/env.sh

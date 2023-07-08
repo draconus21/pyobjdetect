@@ -10,6 +10,7 @@ from matplotlib.widgets import Slider
 
 from pyobjdetect.utils import misc
 
+
 def _saveFig(
     fig,
     figName: str,
