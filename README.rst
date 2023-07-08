@@ -14,10 +14,10 @@ PyObjDetect
 
 
 
-Object detection based on pytorch tutorial
+Playing with pytorch object detection tutorial
 
 
-* Free software: MIT license
+* Free software: GNU General Public License v3
 * Documentation: https://pyobjdetect.readthedocs.io.
 
 

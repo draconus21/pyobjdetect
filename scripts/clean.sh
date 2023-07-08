@@ -17,11 +17,15 @@ function red () {
     echo ${red}$1${normal}
 }
 
-if [[ -n "${NXK_PYTHON_VENV}" ]]; then
-    if [[ -d "${NXK_PYTHON_VENV}" ]]; then
-        green "removing ${NXK_PYTHON_VENV}"
-        rm -r "${NXK_PYTHON_VENV}"/
+green "═══ start pyobjdetect clean.sh ═══"
+
+if [[ -n "${ODT_PYTHON_VENV}" ]]; then
+    if [[ -d "${ODT_PYTHON_VENV}" ]]; then
+        green "removing ${ODT_PYTHON_VENV}"
+        rm -r "${ODT_PYTHON_VENV}"/
     fi
 fi
 
 yellow "make sure to run source ./scripts/env.sh from a new terminal to setup the environment properly"
+
+green "═══ end pyobjdetect clean.sh ═══"

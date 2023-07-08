@@ -119,8 +119,8 @@ Tips
 
 To run a subset of tests::
 
-$ pytest tests.test_pyobjdetect
 
+    $ python -m unittest tests.test_pyobjdetect
 
 Deploying
 ---------

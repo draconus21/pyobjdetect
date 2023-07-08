@@ -8,10 +8,8 @@ import matplotlib.pyplot as plt
 from functools import partial
 from matplotlib.widgets import Slider
 
-# from dmetric.utils import misc
+from pyobjdetect.utils import misc
 
-
-"""
 def _saveFig(
     fig,
     figName: str,
@@ -47,7 +45,6 @@ def saveFigs(figDict: dict, figDir: str, extra: str = None, descStr: str = None,
     logging.info(f"saving figures in {figDir}")
     for figName, fig in figDict.items():
         _saveFig(fig=fig, figName=figName, figDir=figDir, extra=extra, descStr=descStr, **kwargs)
-"""
 
 
 def _setAxProp(ax, setter, propertyName, default=None, **kwargs):

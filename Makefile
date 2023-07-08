@@ -55,13 +55,13 @@ lint/black: ## check style with black
 lint: lint/flake8 lint/black ## check style
 
 test: ## run tests quickly with the default Python
-	pytest
+	python setup.py test
 
 test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source pyobjdetect -m pytest
+	coverage run --source pyobjdetect setup.py test
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html

@@ -4,18 +4,11 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
-  "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
-  "Natural Language :: English",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-]
+version = "0.1.0"
 name = "pyobjdetect"
 authors = [{ name = "Neeth Kunnath", email = "neeth.xavier@gmail.com" }]
-description = "Object detection based on pytorch tutorial"
-license = { text = "MIT license" }
+description = "Playing with pytorch object detection tutorial"
+license = { text = "GNU General Public License v3" }
 keywords = ["pyobjdetect"]
 dependencies = [
   "click",
@@ -27,21 +20,19 @@ dependencies = [
   "pyside2",
 ]
 requires-python = ">=3.7"
-dynamic = ["version", "readme"]
+dynamic = ["readme"]
+classifiers=[
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+    ]
 
 [project.optional-dependencies]
-dev = [
-  "black",
-  "build",
-  "tox",
-  "coverage",
-  "Sphinx",
-  "twine",
-  "click",
-  "pytest",
-  "black",
-]
-test = ["tox", "coverage", "Sphinx", "twine", "click", "pytest", "black"]
+dev = ["black", "build", "tox", "coverage", "Sphinx", "twine", "click", "black"]
+test = ["tox", "coverage", "Sphinx", "twine", "click", "black"]
 
 [project.scripts]
 pyobjdetect = "pyobjdetect.cli:main"
@@ -54,11 +45,7 @@ changelog = "https://gitlab.com/draconus21/pyobjdetect/blob/master/CHANGELOG.md"
 exclude = ["data", "docs", "experiments", "pyscripts", "logs", "tests"]
 
 [tool.setuptools.dynamic]
-version = { attr = "pyobjdetect.__version__" }
-readme = { file = ["README.rst", "CONTRIIBUTING.rst", "HISTORY.rst"] }
-
-[tool.pytest]
-collect_ignore = ["setup.py"]
+readme = { file = ["README.rst", "CONTRIBUTING.rst", "HISTORY.rst"] }
 
 [tool.black]
 line-length = 120
