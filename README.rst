@@ -72,12 +72,12 @@ When you return to the project, run the `source` command to set up the environme
 
 Building wheels
 ---------------
-
 Run the following from the root directory of this repo. It will generate a wheel file in `repo_root_dir/dist`.
 
 .. code-block:: bash
 
     python -m build .
+
 
 Credits
 -------
