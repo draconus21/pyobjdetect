@@ -1,3 +1,4 @@
+import logging
 import torchvision
 from torchvision.models.detection import FasterRCNN
 from torchvision.models.detection.rpn import AnchorGenerator
@@ -75,7 +76,6 @@ def get_model_instance_segmentation(num_classes=2):
 def test_forward():
     import os
     import torch
-    import logging
     import numpy as np
     from pyobjdetect.utils import logutils, viz
     from pyobjdetect.pytorch_reference_detection import utils as pyt_utils
@@ -115,6 +115,80 @@ def test_forward():
     logging.info(f"{len(predictions)} predictions: {predictions}")
 
 
+def train_example(num_classes=2, nepochs=10):
+    import os
+    import torch
+    from pyobjdetect.utils import logutils, viz
+
+    from pyobjdetect.pytorch_reference_detection import engine
+
+    # train params
+    print_freq = 10
+
+    # data params
+    ntest = 50  # number of test examples
+    batch_size = 2
+    num_workers = 4
+
+    # opt params
+    lr = 0.005
+    momentum = 0.9
+    weight_decay = 0.0005
+
+    # sheduler params
+    step_size = 3
+    gamma = 1
+
+    logutils.setupLogging("DEBUG")
+
+    device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+    logging.info(f"Using device: {device}")
+
+    root = os.path.join(os.environ["ODT_DATA_DIR"], "PennFudanPed")
+    dataset_train = PennFudanDatatset(root, transforms=transforms.get_example_transform(train=True))
+    dataset_test = PennFudanDatatset(root, transforms=transforms.get_example_transform(train=False))
+
+    # split the dataset in train and test set
+    indices = torch.randperm(len(dataset_train)).tolist()
+    dataset_train = torch.utils.data.Subset(dataset_train, indices[:-ntest])
+    dataset_test = torch.utils.data.Subset(dataset_test, indices[-ntest:])
+
+    # define training and validation dataloaders
+    data_loader_train = torch.utils.data.DataLoader(
+        dataset_train, batch_size=batch_size, shuffle=True, num_workers=num_workers, collate_fn=pyt_utils.collate_fn
+    )
+    data_loader_test = torch.utils.data.DataLoader(
+        dataset_test, batch_size=1, shuffle=True, num_workers=num_workers, collate_fn=pyt_utils.collate_fn
+    )
+
+    # get the model using our helper function
+    model = get_model_instance_segmentation(num_classes=num_classes)
+
+    # move model to the right device
+    model.to(device)
+
+    # construct an optimizer
+    params = [p for p in model.parameters() if p.requires_grad]
+    optimizer = torch.optim.SGD(params, lr=lr, momentum=momentum, weight_decay=weight_decay)
+
+    # learning rate scheduler
+    lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=step_size, gamma=gamma)
+
+    # let's train
+    for epoch in range(nepochs):
+        # train for one epcoh, printing every `print_freq` interations
+        engine.train_one_epcoh(model, optimizer, data_loader_train, device, epoch, print_freq=print_freq)
+
+        # update the learning rate
+        lr_scheduler.step()
+
+        # evalute on the test dataset
+        engine.evaluate(model.data_loader_test, device=device)
+
+    logging.info("Done")
+
+
 if __name__ == "__main__":
     # finetune_example()
-    test_forward()
+    # test_forward()
+    train_example()
