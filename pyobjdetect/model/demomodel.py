@@ -64,7 +64,7 @@ def get_model_instance_segmentation(num_classes=2):
     model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
 
     # now get the number of input features for the mask classifier
-    in_features_mask = model.roi_heads.mask_predictor.conv4_mask.in_channels
+    in_features_mask = model.roi_heads.mask_predictor.conv5_mask.in_channels
     hidden_layer = 256
 
     # and replace the mask predictor with a new one
@@ -120,14 +120,15 @@ def train_example(num_classes=2, nepochs=10):
     import torch
     from pyobjdetect.utils import logutils, viz
 
+    from pyobjdetect.pytorch_reference_detection import utils as pyt_utils
     from pyobjdetect.pytorch_reference_detection import engine
 
     # train params
-    print_freq = 10
+    print_freq = 20
 
     # data params
     ntest = 50  # number of test examples
-    batch_size = 2
+    batch_size = 1
     num_workers = 4
 
     # opt params
@@ -177,13 +178,15 @@ def train_example(num_classes=2, nepochs=10):
     # let's train
     for epoch in range(nepochs):
         # train for one epcoh, printing every `print_freq` interations
-        engine.train_one_epcoh(model, optimizer, data_loader_train, device, epoch, print_freq=print_freq)
+        engine.train_one_epoch(
+            model, optimizer, data_loader_train, device, epoch, print_freq=max(1, print_freq // batch_size)
+        )
 
         # update the learning rate
         lr_scheduler.step()
 
         # evalute on the test dataset
-        engine.evaluate(model.data_loader_test, device=device)
+        engine.evaluate(model, data_loader_test, device=device)
 
     logging.info("Done")
 

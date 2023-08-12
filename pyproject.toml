@@ -31,7 +31,7 @@ classifiers=[
     ]
 
 [project.optional-dependencies]
-dev = ["black", "build", "tox", "coverage", "Sphinx", "twine", "click", "black"]
+dev = ["black", "build", "tox", "coverage", "Sphinx", "twine", "click", "black", "pycocotools", "cython"]
 test = ["tox", "coverage", "Sphinx", "twine", "click", "black"]
 
 [project.scripts]
