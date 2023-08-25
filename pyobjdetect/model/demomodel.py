@@ -186,7 +186,19 @@ def train_example(num_classes=2, nepochs=10):
         lr_scheduler.step()
 
         # evalute on the test dataset
-        engine.evaluate(model, data_loader_test, device=device)
+        try:
+            engine.evaluate(model, data_loader_test, device=device)
+        except Exception as e:
+            msg = (
+                "If you are getting an Assertion error along the following lines\n"
+                + "assert set(annsImgIds) == (set(annsImgIds) & set(self.getImgIds())), \ \n"
+                + "AssertionError: Results do not correspond to current coco set\n"
+                + "replace this line in Coco.loadRes() [it is usually just above the line that threw the error]\n"
+                + "annsImgIds = [ann['image_id'] for ann in anns]\n"
+                + "with\n"
+                + "annsImgIds = [ann['image_id'].numpy()[0] for ann in anns]"
+            )
+            raise ValueError(msg) from e
 
     logging.info("Done")
 
