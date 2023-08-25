@@ -50,7 +50,7 @@ Setup
 =================
 Environment setup
 =================
-First, run the `source scripts/env.sh` to get setup. It will ask to setup a python virtual environment if one does not already exist
+First, run the ``source scripts/env.sh`` to get setup. It will ask to setup a python virtual environment if one does not already exist
 
 .. code-block:: bash
 
@@ -94,7 +94,7 @@ Running a demo example
 **********
 Developing
 **********
-When you return to the project, run the `source` command to set up the environment and reactivate your virtual environment
+When you return to the project, run the ``source`` command to set up the environment and reactivate your virtual environment
 
 .. code-block:: bash
 
@@ -108,7 +108,7 @@ When you return to the project, run the `source` command to set up the environme
 ***************
 Building wheels
 ***************
-Run the following from the root directory of this repo. It will generate a wheel file in `repo_root_dir/dist`.
+Run the following from the root directory of this repo. It will generate a wheel file in ``repo_root_dir/dist``.
 
 .. code-block:: bash
 
