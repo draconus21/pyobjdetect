@@ -4,6 +4,9 @@ import logging
 import numpy as np
 from PIL import Image
 
+from torchvision.io import read_image
+from torchvision.ops.boxes import masks_to_boxes
+
 
 class PennFudanDatatset(torch.utils.data.Dataset):
     def __init__(self, root, transforms):
@@ -75,18 +78,20 @@ class PennFudanDatatset(torch.utils.data.Dataset):
 
 
 def test():
-    from pyobjdetect.utils import logutils, viz
+    from pyobjdetect.transforms import base as transforms
+    from pyobjdetect.utils import logutils, viz, helpers
 
     logutils.setupLogging("DEBUG")
     root = os.path.join(os.environ["ODT_DATA_DIR"], "PennFudanPed")
-    dataset = PennFudanDatatset(root, transforms=None)
+    dataset = PennFudanDatatset(root, transforms=transforms.get_example_transform(train=True))
 
     assert len(dataset) > 0, f"Length of dataset must be larger than 0"
     logging.info(f"loaded dataset with {len(dataset)} examples")
     idx = np.random.randint(0, len(dataset))
     img, target = dataset.__getitem__(idx)
+    img = helpers.torch2numpy(img)
 
-    matToShow = [target["masks"][i].numpy() for i in range(target["masks"].shape[0])]
+    matToShow = [helpers.torch2numpy(target["masks"][i]) for i in range(target["masks"].shape[0])]
     matToShow.append(np.array(img))
     viz.quickmatshow(matToShow, title=f"example {idx}")
     viz.show()

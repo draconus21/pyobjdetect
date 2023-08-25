@@ -128,7 +128,7 @@ def train_example(num_classes=2, nepochs=10):
 
     # data params
     ntest = 50  # number of test examples
-    batch_size = 1
+    batch_size = 2
     num_workers = 4
 
     # opt params
