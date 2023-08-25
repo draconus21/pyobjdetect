@@ -40,7 +40,7 @@ Prerequisites
 .. _Pytorch Object Detection Tutorial: https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
 .. _Dataset [object detection]: https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip
 .. _Pytorch Transfer Learning Tutorial: https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
-.. _Dataset [transferlearning]: https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip
+.. _Dataset [transferlearning]: https://download.pytorch.org/tutorial/hymenoptera_data.zip
 .. _`Cuda Toolkit 11.7`: https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network
 
 *****
@@ -70,7 +70,7 @@ Then, install the package in editable mode
 Training Data
 =============
 
-Download training data.
+Download training data for ``Object Detection``.
 
 .. code-block:: bash
 
@@ -79,6 +79,16 @@ Download training data.
 
     # extract it in the current folder
     unzip PennFudanPed.zip -d `echo ${ODT_DATA_DIR}/` && rm PennFudanPed.zip
+
+Download training data for ``Transfer Learning``.
+
+.. code-block:: bash
+
+    # download the Penn-Fudan dataset
+    wget https://download.pytorch.org/tutorial/hymenoptera_data.zip
+
+    # extract it in the current folder
+    unzip hymenoptera_data.zip -d `echo ${ODT_DATA_DIR}/` && rm hymenoptera_data.zip
 
 That's it!
 
