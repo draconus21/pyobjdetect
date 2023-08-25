@@ -39,16 +39,29 @@ def prettyDumpDict(dictData):
     return json.dumps(makeDictJsonReady(dictData), indent=4, sort_keys=True)
 
 
-def serror(message, verboseLvl=0):
-    secho(message, fg="red", verboseLvl=0)
+def serror(message, verboseLvl=3):
+    secho(message, fg="red", verboseLvl=verboseLvl)
+    logging.error(message)
 
 
-def swarn(message, verboseLvl=0):
-    secho(message, fg="yellow", verboseLvl=0)
+def swarn(message, verboseLvl=2):
+    secho(message, fg="yellow", verboseLvl=verboseLvl)
+    logging.warning(message)
+
+
+def info(message, verboseLvl=1):
+    secho(message, verboseLvl=verboseLvl)
+    logging.info(message)
+
+
+def debug(message, verboseLvl=0):
+    secho(message, fg=None, verboseLvl=verboseLvl)
+    logging.debug(message)
 
 
 def secho(message, fg="cyan", verboseLvl=0):
-    if verboseLvl <= VERBOSE:
+    print(verboseLvl, VERBOSE)
+    if verboseLvl >= VERBOSE:
         if isinstance(message, str):
             click.secho(message, fg=fg)
         elif isinstance(message, dict):
