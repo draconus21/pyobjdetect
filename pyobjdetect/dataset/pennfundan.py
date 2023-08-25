@@ -4,9 +4,6 @@ import logging
 import numpy as np
 from PIL import Image
 
-from torchvision.io import read_image
-from torchvision.ops.boxes import masks_to_boxes
-
 
 class PennFudanDatatset(torch.utils.data.Dataset):
     def __init__(self, root, transforms):
