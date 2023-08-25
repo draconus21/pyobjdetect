@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 from functools import partial
 from matplotlib.widgets import Slider
+from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
 
 from pyobjdetect.utils import misc
 
@@ -104,7 +105,15 @@ def legend(ax):
             a.legend()
 
 
-def matshow(ax, mat, title=None, cbar=True, **kwargs):
+def matshow(ax=None, mat=None, title=None, cbar=True, **kwargs):
+    if mat is None:
+        logging.debug(f"no mat provided")
+        return
+    if ax is None:
+        suptitle = kwargs.pop("suptitle", f"fig for {title}")
+        _, ax = subplots(1, 1, title=suptitle)
+        ax = ax.ravel()[0]
+
     vmin = kwargs.get("vmin", None)
     vmax = kwargs.get("vmax", None)
     cmap = kwargs.get("cmap", "gray")
@@ -153,7 +162,10 @@ def matshow(ax, mat, title=None, cbar=True, **kwargs):
         t = ax.images[0]
         # if cbar is not displayed, show it
         if ax.images[0].colorbar is None:
-            ax.get_figure().colorbar(t, ax=ax)
+            ax_div = make_axes_locatable(ax)
+            # add an axis to the right of main axis
+            cax = ax_div.append_axes("right", size="7%", pad="2%")
+            ax.get_figure().colorbar(t, cax=cax)
         else:  # otherwise update it
             t.set_clim([kwargs["vmin"], kwargs["vmax"]])
 

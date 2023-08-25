@@ -13,7 +13,7 @@ import os
 from PIL import Image
 from tempfile import TemporaryDirectory
 
-from pyobjdetect.utils import misc
+from pyobjdetect.utils import misc, helpers
 
 
 cudnn.benchmark = True
@@ -58,8 +58,15 @@ def get_datasets():
     return image_datasets
 
 
+def previz(inp):
+    inp = helpers.torch2numpy(inp)
+    inp = STD * inp + MEAN
+    inp = np.clip(inp, 0, 1)
+    return inp
+
+
 def run(**kwargs):
-    from pyobjdetect.utils import logutils
+    from pyobjdetect.utils import logutils, viz
 
     logutils.VERBOSE = logutils.DEBUG
 
@@ -83,6 +90,16 @@ def run(**kwargs):
 
     device = torch.device(f"cuda:{gpu_num}" if torch.cuda.is_available() else "cpu")
     logutils.debug(f"Running on {device}")
+
+    # get a batch of training data
+    inputs, classes = next(iter(dataloaders["train"]))
+
+    # make a grid
+    out = [previz(inputs[i]) for i in range(len(inputs))]
+
+    # display them
+    viz.quickmatshow(out, title="Train sample")
+    viz.show()
 
 
 if __name__ == "__main__":
