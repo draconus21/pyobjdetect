@@ -118,7 +118,7 @@ def test_forward():
 def train_example(num_classes=2, nepochs=10):
     import os
     import torch
-    from pyobjdetect.utils import logutils, viz
+    from pyobjdetect.utils import logutils
 
     from pyobjdetect.pytorch_reference_detection import utils as pyt_utils
     from pyobjdetect.pytorch_reference_detection import engine
