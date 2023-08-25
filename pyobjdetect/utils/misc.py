@@ -110,3 +110,15 @@ def cliToDict(ctx, param, dictStr):
         logging.error(f"Caught {e} while processing for {param}\n{dictStr}")
         raise e
     return jdict
+
+
+def get_dir_from_env(key):
+    import pyobjdetect.utils.logutils as lu
+
+    lu.info(os.curdir)
+    d = os.environ.get("key", os.curdir)
+    return d
+
+
+def get_data_dir():
+    return get_dir_from_env("ODT_DATA_DIR")
