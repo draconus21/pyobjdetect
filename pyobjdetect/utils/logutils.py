@@ -9,7 +9,12 @@ import matplotlib.pyplot as plt
 from copy import deepcopy
 
 
-VERBOSE = 1
+DEBUG = 0
+INFO = 1
+WARN = 2
+ERROR = 3
+
+VERBOSE = INFO
 
 
 def makeDictJsonReady(dictData: dict):
@@ -39,12 +44,12 @@ def prettyDumpDict(dictData):
     return json.dumps(makeDictJsonReady(dictData), indent=4, sort_keys=True)
 
 
-def serror(message, verboseLvl=3):
+def error(message, verboseLvl=3):
     secho(message, fg="red", verboseLvl=verboseLvl)
     logging.error(message)
 
 
-def swarn(message, verboseLvl=2):
+def warn(message, verboseLvl=2):
     secho(message, fg="yellow", verboseLvl=verboseLvl)
     logging.warning(message)
 
@@ -60,7 +65,6 @@ def debug(message, verboseLvl=0):
 
 
 def secho(message, fg="cyan", verboseLvl=0):
-    print(verboseLvl, VERBOSE)
     if verboseLvl >= VERBOSE:
         if isinstance(message, str):
             click.secho(message, fg=fg)
