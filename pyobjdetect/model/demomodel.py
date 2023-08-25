@@ -6,7 +6,7 @@ from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
 
 
-from pyobjdetect.transforms import base as transforms
+from pyobjdetect.transform import base as transform
 from pyobjdetect.dataset.pennfundan import PennFudanDatatset
 
 
@@ -87,7 +87,7 @@ def test_forward():
     root = os.path.join(os.environ["ODT_DATA_DIR"], "PennFudanPed")
 
     model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
-    dataset = PennFudanDatatset(root, transforms=transforms.get_example_transform(train=True))
+    dataset = PennFudanDatatset(root, transforms=transform.get_example_transform(train=True))
     data_loader = torch.utils.data.DataLoader(
         dataset, batch_size=batch_size, shuffle=True, num_workers=num_workers, collate_fn=pyt_utils.collate_fn
     )
@@ -146,8 +146,8 @@ def train_example(num_classes=2, nepochs=10):
     logging.info(f"Using device: {device}")
 
     root = os.path.join(os.environ["ODT_DATA_DIR"], "PennFudanPed")
-    dataset_train = PennFudanDatatset(root, transforms=transforms.get_example_transform(train=True))
-    dataset_test = PennFudanDatatset(root, transforms=transforms.get_example_transform(train=False))
+    dataset_train = PennFudanDatatset(root, transforms=transform.get_example_transform(train=True))
+    dataset_test = PennFudanDatatset(root, transforms=transform.get_example_transform(train=False))
 
     # split the dataset in train and test set
     indices = torch.randperm(len(dataset_train)).tolist()

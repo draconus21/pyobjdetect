@@ -75,12 +75,12 @@ class PennFudanDatatset(torch.utils.data.Dataset):
 
 
 def test():
-    from pyobjdetect.transforms import base as transforms
+    from pyobjdetect.transform import base as transform
     from pyobjdetect.utils import logutils, viz, helpers
 
     logutils.setupLogging("DEBUG")
     root = os.path.join(os.environ["ODT_DATA_DIR"], "PennFudanPed")
-    dataset = PennFudanDatatset(root, transforms=transforms.get_example_transform(train=True))
+    dataset = PennFudanDatatset(root, transforms=transform.get_example_transform(train=True))
 
     assert len(dataset) > 0, f"Length of dataset must be larger than 0"
     logging.info(f"loaded dataset with {len(dataset)} examples")
