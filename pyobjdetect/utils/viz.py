@@ -113,7 +113,9 @@ def matshow(ax, mat, title=None, cbar=True, **kwargs):
     # set nans to black for seismic cmap
     if cmap == "seismic":
         nancolor = kwargs.pop("nan_color", "black")
-        cm.get_cmap(cmap).set_bad(color=nancolor)
+        cmap_obj = cm.get_cmap(cmap).copy()
+        cmap_obj.set_bad(color=nancolor)
+        kwargs["cmap"] = cmap_obj
 
     # auto colormap ranges for cmaps
     if vmin is None or vmax is None:
@@ -230,13 +232,15 @@ def quickmatshow(mats: list, **kwargs):
     """
     matshow all mats in list
     """
-    cmap = kwargs.get("cmap", "gray")
+    # remove cmap to avoid conflict with subplots
+    cmap = kwargs.pop("cmap", "gray")
 
     n = len(mats)
     fig, axList, nr, nc = subplots_n(n, **kwargs)
     # to avoid conflict with axis title
     kwargs.pop("title", None)
 
+    # add cmap back for matshow
     kwargs["cmap"] = cmap
     for i, mat in enumerate(mats):
         ax = axList[i // nc, i % nc]
