@@ -65,11 +65,13 @@ def debug(message, verboseLvl=0):
 
 
 def secho(message, fg="cyan", verboseLvl=0):
-    if verboseLvl >= VERBOSE:
-        if isinstance(message, str):
-            click.secho(message, fg=fg)
-        elif isinstance(message, dict):
-            click.secho(json.dumps(message, indent=" " * 4), fg=fg)
+    if verboseLvl < VERBOSE:
+        return  # do nothing
+
+    if isinstance(message, str):
+        click.secho(message, fg=fg)
+    elif isinstance(message, dict):
+        click.secho(json.dumps(message, indent=" " * 4), fg=fg)
 
 
 def setupLogging(level: str = "INFO", env_key: str = "ODT_LOG_CFG"):
