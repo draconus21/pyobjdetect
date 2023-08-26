@@ -113,8 +113,6 @@ def cliToDict(ctx, param, dictStr):
 
 
 def get_dir_from_env(key):
-    import pyobjdetect.utils.logutils as lu
-
     d = os.environ.get(key, os.curdir)
     logutils.debug(f"Fetched {d} for {key}")
     return d
