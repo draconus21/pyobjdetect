@@ -36,8 +36,7 @@ def mkdirs(fname, deleteIfExists=False):
             confirm = input(f"{p} exists. Do you want to delete it and create an empty directory? (Y/N)")
             if confirm in ["Y", "y"]:
                 shutil.rmtree(p)
-                logutils.warn(f"Deleted directory {p}")
-                logging.info(f"Deleted directory {p}")
+                logutils.info(f"Deleted directory {p}")
                 mkdirs(fname=p, deleteIfExists=deleteIfExists)
         else:
             return True

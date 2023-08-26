@@ -205,7 +205,7 @@ def visualize_model(model, dataloader, class_names, num_images=6, device="cpu", 
 
 
 def run(**kwargs):
-    logutils.VERBOSE = logutils.DEBUG
+    logutils.setupLogging(level="DEBUG")
 
     # data params
     bsize = kwargs.get("batch_size", 4)

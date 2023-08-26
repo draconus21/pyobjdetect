@@ -78,10 +78,22 @@ def setupLogging(level: str = "INFO", env_key: str = "ODT_LOG_CFG"):
     """
     Setup logging
     """
+    global VERBOSE
+
     logging.getLogger("matplotlib").setLevel(logging.WARNING)
     plt.style.use("seaborn-pastel")
 
     level = level.upper()
+
+    if level == "ERROR":
+        VERBOSE = ERROR
+    elif level == "WARN":
+        VERBOSE = WARN
+    elif level == "DEBUG":
+        VERBOSE = DEBUG
+    else:
+        VERBOSE = INFO
+
     value = os.getenv(env_key, None)
     logstr = []
     path = None
