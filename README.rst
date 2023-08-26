@@ -25,17 +25,22 @@ Playing with pytorch object detection tutorial
 Features
 ********
 
-* TODO
+* Pytorch's Object Detection tutorial
+* Pytorch's Transfer learning tutorial
 
 *************
 Prerequisites
 *************
 * `Pytorch Object Detection Tutorial`_
-* Dataset_
+* `Dataset [object detection]`_
+* `Pytorch Transfer Learning Tutorial`_
+* `Dataset [transfer learning]`_
 * `Cuda Toolkit 11.7`_
 
 .. _Pytorch Object Detection Tutorial: https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
-.. _Dataset: https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip
+.. _Dataset [object detection]: https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip
+.. _Pytorch Transfer Learning Tutorial: https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
+.. _Dataset [transferlearning]: https://download.pytorch.org/tutorial/hymenoptera_data.zip
 .. _`Cuda Toolkit 11.7`: https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network
 
 *****
@@ -45,7 +50,7 @@ Setup
 =================
 Environment setup
 =================
-First, run the `source scripts/env.sh` to get setup. It will ask to setup a python virtual environment if one does not already exist
+First, run the ``source scripts/env.sh`` to get setup. It will ask to setup a python virtual environment if one does not already exist
 
 .. code-block:: bash
 
@@ -65,7 +70,7 @@ Then, install the package in editable mode
 Training Data
 =============
 
-Download training data.
+Download training data for ``Object Detection``.
 
 .. code-block:: bash
 
@@ -74,6 +79,16 @@ Download training data.
 
     # extract it in the current folder
     unzip PennFudanPed.zip -d `echo ${ODT_DATA_DIR}/` && rm PennFudanPed.zip
+
+Download training data for ``Transfer Learning``.
+
+.. code-block:: bash
+
+    # download the Penn-Fudan dataset
+    wget https://download.pytorch.org/tutorial/hymenoptera_data.zip
+
+    # extract it in the current folder
+    unzip hymenoptera_data.zip -d `echo ${ODT_DATA_DIR}/` && rm hymenoptera_data.zip
 
 That's it!
 
@@ -89,7 +104,7 @@ Running a demo example
 **********
 Developing
 **********
-When you return to the project, run the `source` command to set up the environment and reactivate your virtual environment
+When you return to the project, run the ``source`` command to set up the environment and reactivate your virtual environment
 
 .. code-block:: bash
 
@@ -103,7 +118,7 @@ When you return to the project, run the `source` command to set up the environme
 ***************
 Building wheels
 ***************
-Run the following from the root directory of this repo. It will generate a wheel file in `repo_root_dir/dist`.
+Run the following from the root directory of this repo. It will generate a wheel file in ``repo_root_dir/dist``.
 
 .. code-block:: bash
 

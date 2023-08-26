@@ -4,10 +4,10 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-version = "0.2.0"
+version = "0.3.0"
 name = "pyobjdetect"
 authors = [{ name = "Neeth Kunnath", email = "neeth.xavier@gmail.com" }]
-description = "Playing with pytorch object detection tutorial"
+description = "Playing with various pytorch tutorials"
 license = { text = "GNU General Public License v3" }
 keywords = ["pyobjdetect"]
 dependencies = [
@@ -31,7 +31,10 @@ classifiers=[
     ]
 
 [project.optional-dependencies]
-dev = ["black", "build", "tox", "coverage", "Sphinx", "twine", "click", "black", "pycocotools", "cython"]
+dev = ["black", "build", "tox", "coverage", "Sphinx", "twine", "click", "black",
+# object detection
+"pycocotools", "cython"
+]
 test = ["tox", "coverage", "Sphinx", "twine", "click", "black"]
 
 [project.scripts]

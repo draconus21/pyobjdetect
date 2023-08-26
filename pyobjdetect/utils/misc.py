@@ -7,7 +7,7 @@ from copy import deepcopy
 from pathlib import Path
 from configparser import ConfigParser
 
-from pyobjdetect.utils.logutils import serror, swarn
+from pyobjdetect.utils import logutils
 
 
 def userInput(prompt, castFunc=None):
@@ -19,7 +19,7 @@ def userInput(prompt, castFunc=None):
         try:
             var = castFunc(input(f"{prompt}: "))
         except Exception as e:
-            serror(e)
+            logutils.error(e)
             pass
     return var
 
@@ -36,8 +36,7 @@ def mkdirs(fname, deleteIfExists=False):
             confirm = input(f"{p} exists. Do you want to delete it and create an empty directory? (Y/N)")
             if confirm in ["Y", "y"]:
                 shutil.rmtree(p)
-                swarn(f"Deleted directory {p}")
-                logging.info(f"Deleted directory {p}")
+                logutils.info(f"Deleted directory {p}")
                 mkdirs(fname=p, deleteIfExists=deleteIfExists)
         else:
             return True
@@ -110,3 +109,13 @@ def cliToDict(ctx, param, dictStr):
         logging.error(f"Caught {e} while processing for {param}\n{dictStr}")
         raise e
     return jdict
+
+
+def get_dir_from_env(key):
+    d = os.environ.get(key, os.curdir)
+    logutils.debug(f"Fetched {d} for {key}")
+    return d
+
+
+def get_data_dir():
+    return get_dir_from_env("ODT_DATA_DIR")
