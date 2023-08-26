@@ -171,15 +171,11 @@ def train_model(
 
 
 def visualize_model(model, dataloader, class_names, num_images=6, device="cpu", title=None):
-    if title is None:
-        title = ""
-    else:
-        title = f"{title} "
     was_training = model.training
     model.eval()
     images_so_far = 0
 
-    fig, ax, _, _ = viz.subplots_n(num_images)
+    fig, ax, _, _ = viz.subplots_n(num_images, title=title)
     ax = ax.ravel()
 
     with torch.no_grad():
@@ -194,7 +190,9 @@ def visualize_model(model, dataloader, class_names, num_images=6, device="cpu", 
                 viz.matshow(
                     ax[images_so_far],
                     previz(inputs.cpu().data[j]),
-                    title=f"{title}prediction: {class_names[preds[j]]}",
+                    title=f"prediction: {class_names[preds[j]]}",
+                    cbar=False,
+                    show_axis=False,
                 )
 
                 images_so_far += 1
@@ -245,7 +243,7 @@ def run(**kwargs):
     out = [previz(inputs[i]) for i in range(len(inputs))]
 
     # display them
-    viz.quickmatshow(out, title="Train sample")
+    viz.quickmatshow(out, title="Train sample", cbar=False, show_axis=False)
 
     ###############################
     # Preparing pre trained model #
