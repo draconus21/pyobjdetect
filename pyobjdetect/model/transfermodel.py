@@ -261,7 +261,7 @@ def run(**kwargs):
     # Observe that all parameters are being optimized
     optimizer_ft = optim.SGD(model_ft.parameters(), lr=lr, momentum=momentum)
 
-    # Decay LR by a factor of 0.1 every 7 epochs
+    # Decay LR by a factor of `lr_gamma` every `lr_step` epochs
     exp_lr_scheduler = lr_scheduler.StepLR(optimizer=optimizer_ft, step_size=lr_step_size, gamma=lr_gamma)
 
     model_ft = train_model(
