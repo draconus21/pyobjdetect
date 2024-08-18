@@ -9,7 +9,12 @@ import matplotlib.pyplot as plt
 from copy import deepcopy
 
 
-VERBOSE = 1
+DEBUG = 0
+INFO = 1
+WARN = 2
+ERROR = 3
+
+VERBOSE = INFO
 
 
 def makeDictJsonReady(dictData: dict):
@@ -39,30 +44,56 @@ def prettyDumpDict(dictData):
     return json.dumps(makeDictJsonReady(dictData), indent=4, sort_keys=True)
 
 
-def serror(message, verboseLvl=0):
-    secho(message, fg="red", verboseLvl=0)
+def error(message, verboseLvl=3):
+    secho(message, fg="red", verboseLvl=verboseLvl)
+    logging.error(message)
 
 
-def swarn(message, verboseLvl=0):
-    secho(message, fg="yellow", verboseLvl=0)
+def warn(message, verboseLvl=2):
+    secho(message, fg="yellow", verboseLvl=verboseLvl)
+    logging.warning(message)
+
+
+def info(message, verboseLvl=1):
+    secho(message, verboseLvl=verboseLvl)
+    logging.info(message)
+
+
+def debug(message, verboseLvl=0):
+    secho(message, fg=None, verboseLvl=verboseLvl)
+    logging.debug(message)
 
 
 def secho(message, fg="cyan", verboseLvl=0):
-    if verboseLvl <= VERBOSE:
-        if isinstance(message, str):
-            click.secho(message, fg=fg)
-        elif isinstance(message, dict):
-            click.secho(json.dumps(message, indent=" " * 4), fg=fg)
+    if verboseLvl < VERBOSE:
+        return  # do nothing
+
+    if isinstance(message, str):
+        click.secho(message, fg=fg)
+    elif isinstance(message, dict):
+        click.secho(json.dumps(message, indent=" " * 4), fg=fg)
 
 
 def setupLogging(level: str = "INFO", env_key: str = "ODT_LOG_CFG"):
     """
     Setup logging
     """
+    global VERBOSE
+
     logging.getLogger("matplotlib").setLevel(logging.WARNING)
     plt.style.use("seaborn-pastel")
 
     level = level.upper()
+
+    if level == "ERROR":
+        VERBOSE = ERROR
+    elif level == "WARN":
+        VERBOSE = WARN
+    elif level == "DEBUG":
+        VERBOSE = DEBUG
+    else:
+        VERBOSE = INFO
+
     value = os.getenv(env_key, None)
     logstr = []
     path = None
