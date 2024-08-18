@@ -170,7 +170,7 @@ def train_model(
     return model
 
 
-def visualize_model(model, dataloader, class_names, num_images=6, device="cpu", title=None):
+def visualize_model(model, dataloader, class_names, num_images=16, device="cpu", title=None):
     was_training = model.training
     model.eval()
     images_so_far = 0
@@ -212,10 +212,10 @@ def run(**kwargs):
     gpu_num = kwargs.get("gpu_num", 0)
 
     # train params
-    num_epochs = kwargs.get("num_epochs", 25)
-    lr = kwargs.get("lr", 0.001)
+    num_epochs = kwargs.get("num_epochs", 1025)
+    lr = kwargs.get("lr", 0.0001)
     momentum = kwargs.get("momentum", 0.9)
-    lr_step_size = kwargs.get("lr_step_size", 7)
+    lr_step_size = kwargs.get("lr_step_size", 27)
     lr_gamma = kwargs.get("lr_gamma", 0.1)
 
     image_datasets = get_datasets()
@@ -280,7 +280,6 @@ def run(**kwargs):
         model=model_ft,
         dataloader=dataloaders["val"],
         class_names=class_names,
-        num_images=6,
         device=device,
         title="Best Model",
     )
